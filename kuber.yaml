@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eureka-server-ser
+  name: eureka-server-svc
 spec:
   selector:
     app: eureka-server
@@ -29,4 +29,4 @@ spec:
     - protocol: TCP
       port: 8761
       targetPort: 8761
-  type: ClusterIP
+  type: LoadBalancer
