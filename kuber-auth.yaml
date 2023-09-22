@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-auth-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ms-auth
+  template:
+    metadata:
+      labels:
+        app: ms-auth
+    spec:
+      containers:
+        - name: ms-auth
+          image: nuline/ms-auth
+          ports:
+            - containerPort: 8081
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-auth-svc
+spec:
+  selector:
+    app: ms-auth
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  type: LoadBalancer
